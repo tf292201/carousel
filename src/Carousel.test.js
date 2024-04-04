@@ -27,7 +27,7 @@ it("matches snapshot", function() {
   const { container } = render(<Carousel photos={photos} title={title} />);
   expect(container.firstChild).toMatchSnapshot();
 })
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // Checks that left arrow is missing from the first image
 // and right arrow is missing from the last image
 
