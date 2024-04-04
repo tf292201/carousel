@@ -35,24 +35,28 @@ import Card from "./Card";
  
   return (
     <div className="Carousel">
-      <h1>{title}</h1>
-      <div className="Carousel-main">
+    <h1>{title}</h1>
+    <div className="Carousel-main">
+      {currCardIdx !== 0 && ( // Render left arrow only if not on the first image
         <i
           className="bi bi-arrow-left-circle"
           onClick={goBackward} // Call goBackward when left arrow is clicked
         />
-        <Card
-          caption={currCard.caption}
-          src={currCard.src}
-          currNum={currCardIdx + 1}
-          totalNum={total}
-        />
+      )}
+      <Card
+        caption={photos[currCardIdx].caption}
+        src={photos[currCardIdx].src}
+        currNum={currCardIdx + 1}
+        totalNum={total}
+      />
+      {currCardIdx !== total - 1 && ( // Render right arrow only if not on the last image
         <i
           className="bi bi-arrow-right-circle"
           onClick={goForward} // Call goForward when right arrow is clicked
         />
-      </div>
+      )}
     </div>
+  </div>
   );
 }
 

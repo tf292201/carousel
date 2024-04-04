@@ -27,6 +27,32 @@ it("matches snapshot", function() {
   const { container } = render(<Carousel photos={photos} title={title} />);
   expect(container.firstChild).toMatchSnapshot();
 })
+////////////////////////////////////////////////////////////////
+// Checks that left arrow is missing from the first image
+// and right arrow is missing from the last image
+
+it('hides the left arrow on the first image and the right arrow on the last image', function() {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+
+  //expect the left arrow to be hidden
+  const leftArrow = container.querySelector(".bi-arrow-left-circle");
+  expect(leftArrow).not.toBeInTheDocument();
+
+  //move to the last image
+  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  fireEvent.click(rightArrow);
+  fireEvent.click(rightArrow);
+
+  expect(rightArrow).not.toBeInTheDocument();
+
+});
+
+
 
 //////////////////////////////////////////////////////////
 // clicks right arrow to move to second image, then clicks left arrow to move back to first image,
@@ -101,4 +127,3 @@ it("works when you click on the right arrow", function() {
     container.querySelector('img[alt="testing image 2"]')
   ).toBeInTheDocument();
 });
-
