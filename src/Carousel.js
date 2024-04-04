@@ -22,16 +22,24 @@ import Card from "./Card";
 
   //Increments currCardIdx state by 1
   function goForward() {
-    setCurrCardIdx(currCardIdx + 1);
+    const nextIdx = currCardIdx === total - 1 ? 0 : currCardIdx + 1;
+    setCurrCardIdx(nextIdx);
   }
 
+  //Decrements currCardIdx state by 1
+  function goBackward() {
+    const prevIdx = currCardIdx === 0 ? total - 1 : currCardIdx - 1;
+    setCurrCardIdx(prevIdx);
+  }
+
+ 
   return (
     <div className="Carousel">
       <h1>{title}</h1>
       <div className="Carousel-main">
         <i
           className="bi bi-arrow-left-circle"
-          onClick={goForward}
+          onClick={goBackward} // Call goBackward when left arrow is clicked
         />
         <Card
           caption={currCard.caption}
@@ -41,7 +49,7 @@ import Card from "./Card";
         />
         <i
           className="bi bi-arrow-right-circle"
-          onClick={goForward}
+          onClick={goForward} // Call goForward when right arrow is clicked
         />
       </div>
     </div>
